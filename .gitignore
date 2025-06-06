@@ -11,6 +11,7 @@ ENV/
 *.egg-info/
 dist/
 build/
+gen_dataset_optimized.py
 
 # Jupyter Notebook
 .ipynb_checkpoints
