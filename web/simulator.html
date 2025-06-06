@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FraudShield AI - Fraud Detection Simulator</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/simulator.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <span class="logo-icon">🛡️</span>
+                <span class="logo-text">FraudShield AI</span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="simulator.html" class="active">Try Demo</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#how-it-works">How It Works</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Simulator Section -->
+    <section class="simulator">
+        <div class="simulator-container">
+            <div class="simulator-header">
+                <h1>Fraud Detection Simulator</h1>
+                <p>Adjust transaction parameters and see our AI detect fraud in real-time</p>
+            </div>
+
+            <div class="simulator-content">
+                <!-- Transaction Builder -->
+                <div class="transaction-builder glass">
+                    <h2>Build Your Transaction</h2>
+                    
+                    <div class="input-group">
+                        <label for="amount">Transaction Amount ($)</label>
+                        <input type="range" id="amount" min="1" max="10000" value="150" class="slider">
+                        <span class="value-display" id="amount-value">$150</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="balance">Account Balance ($)</label>
+                        <input type="range" id="balance" min="0" max="20000" value="2000" class="slider">
+                        <span class="value-display" id="balance-value">$2000</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="age">Customer Age</label>
+                        <input type="range" id="age" min="18" max="80" value="35" class="slider">
+                        <span class="value-display" id="age-value">35 years</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="category">Transaction Category</label>
+                        <select id="category" class="select-input">
+                            <option value="groceries">Groceries</option>
+                            <option value="electronics">Electronics</option>
+                            <option value="travel">Travel</option>
+                            <option value="gaming">Gaming</option>
+                            <option value="dining">Dining</option>
+                            <option value="shopping">Shopping</option>
+                            <option value="healthcare">Healthcare</option>
+                            <option value="entertainment">Entertainment</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="time">Time of Day</label>
+                        <input type="range" id="time" min="0" max="23" value="14" class="slider">
+                        <span class="value-display" id="time-value">2:00 PM</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="location">Transaction Location</label>
+                        <select id="location" class="select-input">
+                            <option value="USA">United States</option>
+                            <option value="UK">United Kingdom</option>
+                            <option value="Canada">Canada</option>
+                            <option value="Germany">Germany</option>
+                            <option value="Japan">Japan</option>
+                            <option value="Brazil">Brazil</option>
+                            <option value="Nigeria">Nigeria</option>
+                            <option value="Russia">Russia</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="transaction-type">Transaction Type</label>
+                        <div class="radio-group">
+                            <label class="radio-label">
+                                <input type="radio" name="transaction-type" value="purchase" checked>
+                                <span>Purchase</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="transaction-type" value="withdrawal">
+                                <span>ATM Withdrawal</span>
+                            </label>
+                            <label class="radio-label">
+                                <input type="radio" name="transaction-type" value="transfer">
+                                <span>Transfer</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary analyze-btn" onclick="analyzeTransaction()">
+                        Analyze Transaction
+                    </button>
+                </div>
+
+                <!-- Risk Analysis -->
+                <div class="risk-analysis">
+                    <!-- Risk Meter -->
+                    <div class="risk-meter glass">
+                        <h3>Fraud Risk Score</h3>
+                        <div class="meter-container">
+                            <svg class="risk-gauge" viewBox="0 0 200 120">
+                                <path class="gauge-background" d="M 20 100 A 80 80 0 0 1 180 100" />
+                                <path class="gauge-fill" d="M 20 100 A 80 80 0 0 1 180 100" />
+                                <circle class="gauge-needle" cx="100" cy="100" r="5" />
+                                <line class="gauge-needle-line" x1="100" y1="100" x2="100" y2="40" />
+                            </svg>
+                            <div class="risk-percentage">0%</div>
+                            <div class="risk-label">Calculating...</div>
+                        </div>
+                        <div class="risk-zones">
+                            <span class="zone low">Low</span>
+                            <span class="zone medium">Medium</span>
+                            <span class="zone high">High</span>
+                        </div>
+                    </div>
+
+                    <!-- Risk Factors -->
+                    <div class="risk-factors glass">
+                        <h3>Risk Factor Analysis</h3>
+                        <div class="factors-list">
+                            <div class="factor-item">
+                                <span class="factor-name">Transaction Amount</span>
+                                <div class="factor-bar">
+                                    <div class="factor-fill" data-factor="amount"></div>
+                                </div>
+                                <span class="factor-impact">Low</span>
+                            </div>
+                            <div class="factor-item">
+                                <span class="factor-name">Time Risk</span>
+                                <div class="factor-bar">
+                                    <div class="factor-fill" data-factor="time"></div>
+                                </div>
+                                <span class="factor-impact">Low</span>
+                            </div>
+                            <div class="factor-item">
+                                <span class="factor-name">Category Risk</span>
+                                <div class="factor-bar">
+                                    <div class="factor-fill" data-factor="category"></div>
+                                </div>
+                                <span class="factor-impact">Low</span>
+                            </div>
+                            <div class="factor-item">
+                                <span class="factor-name">Balance Coverage</span>
+                                <div class="factor-bar">
+                                    <div class="factor-fill" data-factor="balance"></div>
+                                </div>
+                                <span class="factor-impact">Low</span>
+                            </div>
+                            <div class="factor-item">
+                                <span class="factor-name">Location Risk</span>
+                                <div class="factor-bar">
+                                    <div class="factor-fill" data-factor="location"></div>
+                                </div>
+                                <span class="factor-impact">Low</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Decision -->
+                    <div class="decision-panel glass">
+                        <h3>AI Decision</h3>
+                        <div class="decision-content">
+                            <div class="decision-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"/>
+                                    <path d="M9 12l2 2 4-4"/>
+                                </svg>
+                            </div>
+                            <div class="decision-text">
+                                <h4>Transaction Approved</h4>
+                                <p>This transaction appears to be legitimate based on our analysis.</p>
+                            </div>
+                        </div>
+                        <div class="confidence-meter">
+                            <span>Model Confidence:</span>
+                            <div class="confidence-bar">
+                                <div class="confidence-fill"></div>
+                            </div>
+                            <span class="confidence-value">95%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preset Scenarios -->
+            <div class="preset-scenarios">
+                <h3>Try These Scenarios</h3>
+                <div class="scenarios-grid">
+                    <button class="scenario-btn glass" onclick="loadScenario('normal')">
+                        <span class="scenario-icon">✓</span>
+                        <span class="scenario-name">Normal Purchase</span>
+                        <span class="scenario-desc">Typical grocery shopping</span>
+                    </button>
+                    <button class="scenario-btn glass" onclick="loadScenario('suspicious')">
+                        <span class="scenario-icon">⚠️</span>
+                        <span class="scenario-name">Suspicious Activity</span>
+                        <span class="scenario-desc">Late night electronics</span>
+                    </button>
+                    <button class="scenario-btn glass" onclick="loadScenario('fraud')">
+                        <span class="scenario-icon">🚨</span>
+                        <span class="scenario-name">Likely Fraud</span>
+                        <span class="scenario-desc">Overdraft in foreign country</span>
+                    </button>
+                    <button class="scenario-btn glass" onclick="loadScenario('edge')">
+                        <span class="scenario-icon">🎯</span>
+                        <span class="scenario-name">Edge Case</span>
+                        <span class="scenario-desc">Borderline transaction</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <span class="logo-icon">🛡️</span>
+                        <span class="logo-text">FraudShield AI</span>
+                    </div>
+                    <p>Advanced fraud detection powered by machine learning</p>
+                </div>
+                <div class="footer-links">
+                    <a href="index.html">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#how-it-works">How It Works</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 FraudShield AI. Built with XGBoost & ❤️</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/simulator.js"></script>
+</body>
+</html>
+

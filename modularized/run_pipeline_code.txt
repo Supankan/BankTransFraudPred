@@ -1,0 +1,41 @@
+#cell1
+from preprocessing import load_and_preprocess_data
+from training import train_model, find_optimal_threshold, save_model
+from evaluation import evaluate_model
+from config import MIN_PRECISION, MIN_RECALL
+from sklearn.model_selection import train_test_split
+
+#cell2
+print("Loading and preprocessing data...")
+X, y = load_and_preprocess_data()
+print(f"Data shape: {X.shape} | Fraud rate: {y.mean():.2%}")
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=0.2, stratify=y, random_state=42
+)
+
+#cell3
+print("\nTraining model with SMOTE...")
+model = train_model(X_train, y_train)
+
+#cell4
+print("\nFinding optimal threshold...")
+threshold = find_optimal_threshold(
+    model, 
+    X_train, 
+    y_train,
+    min_precision=MIN_PRECISION,
+    min_recall=MIN_RECALL
+)
+print(f"Using threshold: {threshold:.4f}")
+
+#cell5
+print("\nEvaluating model...")
+metrics = evaluate_model(model, threshold, X_test, y_test)
+
+#cell6
+print("\nSaving model...")
+model_path, threshold_path = save_model(model, threshold)
+print(f"Model saved to: {model_path}")
+print(f"Threshold saved to: {threshold_path}")

@@ -1,0 +1,478 @@
+/* simulator.css - Simulator Page Specific Styles */
+
+.simulator {
+    padding-top: 6rem;
+    min-height: 100vh;
+    background: var(--bg-primary);
+}
+
+.simulator-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.simulator-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.simulator-header h1 {
+    margin-bottom: 1rem;
+}
+
+.simulator-content {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+/* Transaction Builder */
+.transaction-builder {
+    padding: 2rem;
+    height: fit-content;
+    position: sticky;
+    top: 100px;
+}
+
+.transaction-builder h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.input-group {
+    margin-bottom: 1.5rem;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+/* Sliders */
+.slider {
+    width: 100%;
+    height: 6px;
+    border-radius: 3px;
+    background: var(--glass-border);
+    outline: none;
+    -webkit-appearance: none;
+    margin: 0.75rem 0;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+}
+
+.slider::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent-gradient);
+    cursor: pointer;
+    border: none;
+}
+
+.value-display {
+    display: inline-block;
+    color: var(--text-primary);
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+/* Select Inputs */
+.select-input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.select-input:focus {
+    outline: none;
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Radio Group */
+.radio-group {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.radio-label {
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.radio-label:hover {
+    border-color: var(--accent-primary);
+}
+
+.radio-label input[type="radio"] {
+    margin-right: 0.5rem;
+}
+
+.radio-label input[type="radio"]:checked + span {
+    color: var(--accent-primary);
+}
+
+/* Analyze Button */
+.analyze-btn {
+    width: 100%;
+    margin-top: 2rem;
+}
+
+/* Risk Analysis */
+.risk-analysis {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+}
+
+/* Risk Meter */
+.risk-meter {
+    padding: 2rem;
+    grid-column: span 2;
+}
+
+.risk-meter h3 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.meter-container {
+    position: relative;
+    width: 300px;
+    height: 180px;
+    margin: 0 auto;
+}
+
+.risk-gauge {
+    width: 100%;
+    height: 100%;
+}
+
+.gauge-background {
+    fill: none;
+    stroke: var(--glass-border);
+    stroke-width: 20;
+    stroke-linecap: round;
+}
+
+.gauge-fill {
+    fill: none;
+    stroke: url(#gradient);
+    stroke-width: 20;
+    stroke-linecap: round;
+    stroke-dasharray: 251.2;
+    stroke-dashoffset: 251.2;
+    transition: stroke-dashoffset 1s ease-out;
+}
+
+.gauge-needle {
+    fill: white;
+}
+
+.gauge-needle-line {
+    stroke: white;
+    stroke-width: 3;
+    transform-origin: 100px 100px;
+    transition: transform 1s ease-out;
+}
+
+.risk-percentage {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    font-weight: 700;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.risk-label {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.125rem;
+    color: var(--text-secondary);
+}
+
+.risk-zones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+    padding: 0 20px;
+}
+
+.zone {
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.zone.low { color: var(--success); }
+.zone.medium { color: var(--warning); }
+.zone.high { color: var(--danger); }
+
+/* Risk Factors */
+.risk-factors {
+    padding: 2rem;
+}
+
+.risk-factors h3 {
+    margin-bottom: 1.5rem;
+}
+
+.factors-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.factor-item {
+    display: grid;
+    grid-template-columns: 150px 1fr auto;
+    align-items: center;
+    gap: 1rem;
+}
+
+.factor-name {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.factor-bar {
+    height: 8px;
+    background: var(--glass-border);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.factor-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-gradient);
+    transition: width 1s ease-out;
+    border-radius: 4px;
+}
+
+.factor-impact {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Decision Panel */
+.decision-panel {
+    padding: 2rem;
+}
+
+.decision-panel h3 {
+    margin-bottom: 1.5rem;
+}
+
+.decision-content {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.decision-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--success);
+    flex-shrink: 0;
+}
+
+.decision-icon svg {
+    width: 30px;
+    height: 30px;
+    stroke: white;
+}
+
+.decision-icon.warning {
+    background: var(--warning);
+}
+
+.decision-icon.danger {
+    background: var(--danger);
+}
+
+.decision-text h4 {
+    margin-bottom: 0.5rem;
+}
+
+.decision-text p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.confidence-meter {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--glass-border);
+}
+
+.confidence-meter span {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+.confidence-bar {
+    flex: 1;
+    height: 6px;
+    background: var(--glass-border);
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.confidence-fill {
+    height: 100%;
+    width: 0%;
+    background: var(--accent-gradient);
+    transition: width 1s ease-out;
+}
+
+.confidence-value {
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+/* Preset Scenarios */
+.preset-scenarios {
+    margin-bottom: 3rem;
+}
+
+.preset-scenarios h3 {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.scenarios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.scenario-btn {
+    padding: 1.5rem;
+    text-align: left;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.scenario-btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px 0 rgba(59, 130, 246, 0.2);
+}
+
+.scenario-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.scenario-name {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.scenario-desc {
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+}
+
+/* Analyzing Animation */
+.risk-analysis.analyzing .glass {
+    animation: pulse 1s ease-out;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: var(--glass-shadow);
+    }
+    50% {
+        box-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.5);
+    }
+    100% {
+        box-shadow: var(--glass-shadow);
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .simulator-content {
+        grid-template-columns: 1fr;
+    }
+    
+    .transaction-builder {
+        position: static;
+    }
+    
+    .risk-analysis {
+        grid-template-columns: 1fr;
+    }
+    
+    .risk-meter {
+        grid-column: span 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .scenarios-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .meter-container {
+        width: 250px;
+        height: 150px;
+    }
+    
+    .risk-percentage {
+        font-size: 2.5rem;
+    }
+}
+
